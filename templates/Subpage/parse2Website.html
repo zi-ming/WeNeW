@@ -1,0 +1,37 @@
+{% extends 'Subpage_Base.html' %}
+
+{% block style %}
+select{
+    background: transparent;
+    color: black;
+    font-size: 14px;
+    border: 0;
+}
+{% endblock %}
+
+
+{% block form %}
+<form method="get" class="signup--form" action="{% url 'websiteSub' %}">{% csrf_token %}
+    <p><label>
+        <select name="website_type">
+            <option selected="selected" value="0">WebSite Url:</option>
+            <option value="1">Official Accounts:</option>
+        </select></label>
+        <input type="text" name="website_url" style="text-transform:lowercase" maxlength="254"
+               autocapitalize="off" required="required" placeholder="Enter your webSite url or Official Accounts" autofocus=""></p>
+    <div class="row terms--row">
+        <div class="col-xs-7 text-left">
+            <div class="terms">
+                <span>
+                    {% if errors|length > 0 %}
+                        {{ errors }}
+                    {% endif %}
+                </span><br>
+            </div>
+        </div>
+        <div class="navbar-right col-xs-4">
+            <button class="btn btn-primary" style="padding: 10px 60px" type="submit">打开</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

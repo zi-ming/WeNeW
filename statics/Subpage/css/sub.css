@@ -1,0 +1,82 @@
+.sub_button_m {
+    float: left;
+    display: inline-block;
+    position: relative;
+    margin: 0 0 2px 0;
+    padding: 5px 30px;
+    text-align: center;
+    text-decoration: none;
+    font: bold 12px/25px Microsoft YaHei, sans-serif;
+    border-radius: 5px;
+}
+
+.sub_button_s {
+    float: left;
+    display: inline-block;
+    position: relative;
+    margin: 0 0 2px 0;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    font: bold 12px/25px Microsoft YaHei, sans-serif;
+
+    border-radius: 5px;
+}
+
+.sub_button_m:hover,.sub_button_s:hover {
+    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, .29), inset 0px 0px 2px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, .29), inset 0px 0px 2px rgba(0, 0, 0, .5);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .29), inset 0px 0px 2px rgba(0, 0, 0, .5);
+}
+
+.sub_button_m:active,.sub_button_s:active {
+    -webkit-box-shadow: inset 0px 0px 3px rgba(0, 0, 0, .8);
+    -moz-box-shadow: inset 0px 0px 3px rgba(0, 0, 0, .8);
+    box-shadow: inset 0px 0px 3px rgba(0, 0, 0, .8);
+}
+
+.unactive {
+    color: #19667d;
+    background: #E5ECE1;
+}
+
+.lightBlue{
+    color: #19667d;
+    background: #2DD7FB;
+}
+
+.active {
+    color: #3e5706;
+    background: #A7FF00;
+}
+
+.menuSub{
+    color: #3e5706;
+    background: #A7FF00;
+    position: fixed;
+    z-index: 100;
+    top: 300px;
+}
+
+.sub_container{
+    position: fixed;
+    z-index: 9999;
+    top: 250px;
+    width: 100px
+}
+
+.red {
+    color: #19667d;
+    background: #EE4D55;
+}
+
+.type-select{
+    background: white;
+    color: black;
+    font-size: 14px;
+    border: 0;
+}
+
+.type-select select{
+    background-color: red;
+}

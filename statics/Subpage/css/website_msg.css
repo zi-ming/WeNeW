@@ -1,0 +1,38 @@
+.website-item {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    border: 1px solid #ccc;
+    float: left;
+    height: 35px;
+    margin-top: 20px;
+    /*margin-left: 10px;*/
+}
+
+.website-url-active {
+    color: #555;
+    background-color: #fff;
+    border-radius: 5px;
+    height: 100%;
+}
+
+
+.custom-clear{
+    position:fixed;
+    right:20px;
+    bottom:50px;
+    font-size: medium;
+    width: 70px;
+    height: 35px;
+    line-height: 38px;
+    text-align: center;
+    background: rgba(248,89,89,.8);
+    cursor: pointer;
+    margin-bottom: 2px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 900;
+}

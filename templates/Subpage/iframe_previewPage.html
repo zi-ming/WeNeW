@@ -1,0 +1,96 @@
+{% extends 'News_Base.html' %}
+
+
+{% block navbar %}
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="background-color: #2C3251">
+    <ul class="nav navbar-nav navbar-left">
+        <li>
+            <a class="page-scroll" href="/sub/"></a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+
+{% block script %}
+<script src="/static/Subpage/js/common.js"></script>
+<script type="text/javascript">
+    function Content_obj(content_type, nodes) {
+        var _content_type = content_type,
+            _nodes = nodes,
+            surviveAttrs = ["src"];
+
+        this.removeTagAttrs = function (tag_obj) {
+            var childs = tag_obj.children;
+            for(var i=0; i<childs.length; i++){
+                this.removeTagAttrs(childs[i]);
+            }
+            var attrs = new Array();
+            for(var i=0; i<tag_obj.attributes.length; i++) {
+                attrs.push(tag_obj.attributes[i].name);
+            }
+            for(var i=0; i<attrs.length; i++){
+                if(!str_in_array(surviveAttrs, attrs[i])){
+                    try{
+                        tag_obj.removeAttribute(attrs[i]);
+                    }catch(e){}
+                }
+            }
+        };
+
+        this.removeAttrs = function () {
+            for (var i = 0; i < _nodes.length; i++) {
+                this.removeTagAttrs(_nodes[i]);
+                if (_content_type != "3") {
+                    break;
+                }
+            }
+            return _nodes;
+        };
+    }
+
+
+    function Subsribe() {
+        var type = null;
+        this.updateContent = function (tool_type, nodes) {
+            switch (tool_type.toString()) {
+                case "0":
+                    type = "title";
+                    break;
+                case "1":
+                    type = "author";
+                    break;
+                case "2":
+                    type = "time";
+                    break;
+                case "3":
+                    type = "content";
+                    break;
+            }
+            if (!nodes) {
+                document.querySelector("#preview_" + type + "").innerHTML = nodes;
+                return;
+            }
+            if (type != null) {
+                if (type != "content") {
+                    document.querySelector("#preview_" + type + "").innerText = nodes[0].data;
+                }
+                else {
+                    var content = "";
+                    var _nodes = new Content_obj(tool_type, nodes);
+                    _nodes = _nodes.removeAttrs();
+                    for (var i = 0; i < _nodes.length; i++) {
+                        content += _nodes[i].outerHTML;
+                    }
+                    document.querySelector("#preview_" + type + "").innerHTML = content;
+                }
+            }
+        };
+    }
+
+
+    var OB = new Subsribe();
+
+
+</script>
+{% endblock %}

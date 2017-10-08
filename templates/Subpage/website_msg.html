@@ -1,0 +1,38 @@
+{% extends 'News_Base.html' %}
+
+{% block style %}
+<link type="text/css" rel="stylesheet" href="/static/Subpage/css/website_msg.css">
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block main %}
+
+
+{% if msgs|length == 0 %}
+<div style="text-align:center;"><h1>暂无日志消息</h1></div>
+{% else %}
+<div><h1>网站订阅反馈日志</h1><span style="font-size: smaller;color: grey">点击链接补全订阅策略</span></div>
+{% endif %}
+
+{% for msg in msgs %}
+<a href="{% url 'contentSub' %}?website_url={{msg.website_url}}&content_url={{msg.content_url}}" class="website-item website-url-active col-md-12" target="_blank">
+    {% if msg.detail|length > 0 %}
+        {{ msg.detail }}
+    {% else %}
+        {{msg.content_url}}
+    {% endif %}
+</a>
+{% endfor %}
+
+<div class="col-md-12" style="float: left; height: 80px"></div>
+{% endblock %}
+
+{% block custom_tool %}
+<span class="custom-clear" onclick="clearLog();">清空日志</span>
+{% endblock %}
+
+{% block script %}
+<script src="/static/Subpage/js/common.js"></script>
+<script src="/static/Subpage/js/website_msg.js"></script>
+{% endblock %}

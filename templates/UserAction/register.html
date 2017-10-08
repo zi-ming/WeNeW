@@ -1,0 +1,29 @@
+{% extends "UserAction_Base.html" %}
+
+{% block title %}
+<title>用户注册</title>
+{% endblock %}
+
+{% block headerText %}
+<h2>Register for WeNeW</h2>
+<p style="margin: 0; color: #2C3251;">You are registering for the beta release of WeNeW.</p>
+{% endblock %}
+
+{% block nav %}
+<li>
+    <a class="page-scroll" href="{% url 'login'%}">Login</a>
+</li>
+{% endblock %}
+
+{% block action %}
+<div class="col-xs-7 text-left">
+    <div class="terms">
+        {% if errors|length > 0 %}
+            <span>{{errors}}</span><br>
+        {% endif %}
+    </div>
+</div>
+<div class="col-xs-5">
+    <button class="btn btn-primary" type="submit">Register</button>
+</div>
+{% endblock %}

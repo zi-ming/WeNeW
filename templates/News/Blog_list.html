@@ -1,0 +1,201 @@
+{% extends 'News_Base.html' %}
+
+{% block title %}
+<title>WeNeW</title>
+{% endblock %}
+
+{% block style %}
+<style type="text/css">
+    .pushtipsdiv{
+        background-color: #77B0F6;
+        color: white;
+        line-height: 30px;
+        display: none;
+        text-align: center;
+    }
+    
+    .loaddiv{
+        line-height: 30px;
+        text-align: center;
+        background-color: #D9EDF7;
+        display: none;
+    }
+    
+    .warningdiv{
+        line-height: 50px;
+        font-weight: 700;
+        text-align: center;
+        /*background-color: #FCF8E3;*/
+        display: none;
+    }
+</style>
+{% endblock %}
+
+{% block header %}
+<header id="masthead" class="site-header row container" role="banner">
+    <div class="site-branding col-md-6">
+        <h1 class="site-title"><a href="#" title="Blain Theme Demo" rel="home">WeNeW</a></h1>
+        <h2 class="site-description">WeNeW  --订阅你想订阅</h2>
+    </div>
+</header><!-- #masthead -->
+{% endblock %}
+
+{% block main %}
+<div id="primary" class="content-area">
+    <div class="pushtipsdiv">有更新</div>
+    <main id="main" class="site-main" role="main">
+        {% for record in records %}
+        <article newid="{{record.id}}"
+                class="row archive post type-post status-publish format-standard sticky hentry category-uncategorized tag-sticky-2 tag-template">
+            <div class="featured-thumb col-md-3 col-xs-12">
+                <a href="{{record.id}}" target="_blank">
+                    {% if record.img|length > 0 %}
+                    <img src="/static/Thumbnail/{{record.img}}" style="max-width: 200px;max-height: 200px">
+                    {% else %}
+                    <img src="/static/News/imgs/e8535be2-921a-11e7-9602-005056c00008.jpg" style="max-width: 200px;max-height: 200px">
+                    {% endif %}
+                </a>
+            </div>
+            <div class="col-md-9 col-xs-12">
+                <header class="entry-header">
+                    <h1 class="entry-title">
+                        <a href="{{record.id}}" rel="bookmark" target="_blank">{{record.title}}</a>
+                    </h1>
+
+                    <div class="entry-meta">
+                        <span>
+                            <span>{{record.author}}</span> - <i>{{record.time}}</i>
+                        </span>
+                    </div>
+                </header><!-- .entry-header -->
+
+                <div class="entry-content">
+                    <p>{{record.brief}} […]</p>
+                </div><!-- .entry-content -->
+            </div>
+        </article><!-- #有图片-## -->
+        {% endfor %}
+    </main><!-- #main -->
+    <div class="warningdiv"><h1>
+        {% if request.user.is_authenticated %}
+        用户数据为空，请订阅网站...
+        {% else %}
+        当前网站正在维护...
+        {% endif %}
+    </h1></div>
+    <div class="loaddiv">正在加载...</div>
+</div><!-- #primary -->
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+
+    window.onload = function(){
+        setInterval(function () {
+            getCount();
+            setDisplay();
+        }, 3000); // end setInterval
+        setDisplay();
+    };
+
+    function getCount() {
+        var obj = jQuery(".pushtipsdiv"),
+            latestArticle = jQuery("#main article").first();
+        if(obj.css("display")=="none"){
+            jQuery.ajax({
+                type: "GET",
+                data:{ 'type':'getcount','id':latestArticle.length==0?"-1":latestArticle.attr('newid')},
+                success:function (data) {
+                    var count = parseInt(data);
+                    if(count>0){
+                        obj.css("display", "block");
+                    }
+                }
+            })
+        }
+    }
+
+    function getnew() {
+        var latestArticle = jQuery("#main article").first();
+        jQuery.getJSON({
+            data:{'type':'getnew','id':latestArticle.length==0?"-1":latestArticle.attr('newid')},
+            success:function (data) {
+                console.log(data);
+                jQuery.each(data,function (index, info) {
+                    var html = parseHtml(info);
+                    if(latestArticle.length==0){
+                        jQuery("#main").append(html);
+                    }else{
+                        jQuery(html).insertBefore(jQuery("#main article").first(), html);
+                    }
+                    jQuery(".pushtipsdiv").css('display','none');
+                });
+            }
+        });
+    }
+
+    function setDisplay() {
+        jQuery(".warningdiv").css("display",jQuery("#main article").length?"none":"block");
+        jQuery(".loaddiv").css("display",jQuery("#main article").length?'block':'none');
+    }
+
+
+    function parseHtml(info) {
+        var html = "";
+        if(info['img']){
+        html = '<article newid="'+info['id']+'" class="row archive post type-post status-publish format-standard sticky hentry category-uncategorized tag-sticky-2 tag-template">'+
+'<div class="featured-thumb col-md-3 col-xs-12"><a href="'+info['id']+'" target="_blank"><img src="/static/Thumbnail/'+info['img']+'" style="max-width: 200px;max-height: 200px"></a></div>'+
+'<div class="col-md-9 col-xs-12"><header class="entry-header"><h1 class="entry-title"><a href="'+info['id']+'" rel="bookmark" target="_blank">'+info['title']+'</a>'+
+'</h1><div class="entry-meta"><span><span>'+info['author']+'</span> - <i>'+info['time']+'</i></span></div></header>'+
+'<div class="entry-content"><p>'+info['brief']+' […]</p></div></div></article>';}
+        else{
+        html = '<article newid="'+info['id']+'" class="row archive post type-post status-publish format-standard sticky hentry category-uncategorized tag-sticky-2 tag-template">'+
+'<div class="featured-thumb col-md-3 col-xs-12"><a href="'+info['id']+'" target="_blank"><img src="/static/News/imgs/e8535be2-921a-11e7-9602-005056c00008.jpg" style="max-width: 200px;max-height: 200px"></a></div>'+
+'<div class="col-md-9 col-xs-12"><header class="entry-header"><h1 class="entry-title"><a href="'+info['id']+'" rel="bookmark" target="_blank">'+info['title']+'</a>'+
+'</h1><div class="entry-meta"><span><span>'+info['author']+'</span> - <i>'+info['time']+'</i></span></div></header>'+
+'<div class="entry-content"><p>'+info['brief']+' […]</p></div></div></article>';}
+        return html;
+    }
+
+
+    jQuery(".pushtipsdiv").click(function () {
+        getnew();
+        setDisplay();
+    });
+
+
+    function getold() {
+        var obj = jQuery('#main article').last();
+        if(obj) {
+            jQuery.getJSON({
+                data: {'type': 'getold', 'id': obj.length==0?-1:obj.attr("newid")},
+                success: function (data) {
+                    jQuery(".loaddiv").text(data.length?"正在加载...":"没有更多数据");
+                    jQuery.each(data, function (index, info) {
+                            jQuery("#main").append(parseHtml(info));
+                        });
+                }
+            })
+        }
+    }
+
+    jQuery(window).scroll(scrollHandler);
+
+
+    function scrollHandler() {
+        var winH = jQuery(window).height();
+        var pageH = jQuery(document.body).height();
+        var scrollT = jQuery(window).scrollTop();
+        var distinct = (pageH - scrollT - winH)/winH;
+        if(distinct < 0.001){
+            getold();
+        }
+    }
+
+
+    jQuery(".loaddiv").click(function () {
+        getold();
+    })
+
+</script>
+{% endblock %}

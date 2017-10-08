@@ -1,0 +1,190 @@
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    {% block title %}
+    <title></title>
+    {% endblock %}
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/UserAction/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/static/UserAction/css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/UserAction/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/static/UserAction/css/custom.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script async="" src="/static/UserAction/js/analytics.js"></script>
+    <script src="/static/UserAction/js/jquery.min.js"></script>
+    <!--<style type="text/css" abt="234"></style>-->
+
+    <style>
+        .navbar-default {
+            padding-left: 120px;
+            padding-right: 150px;
+        }
+
+        .navbar-default .navbar-nav > li > a {
+            color: white;
+        }
+
+        .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+            color: white;
+        }
+
+        .beta--link {
+            color: #FF4B4B;
+            font-size: 8px;
+            margin-top: -5px;
+            position: absolute;
+            margin-top: -25px;
+            margin-left: 40px;
+        }
+    </style>
+
+    <style type="text/css">object, embed {
+        -webkit-animation-duration: .001s;
+        -webkit-animation-name: playerInserted;
+        -ms-animation-duration: .001s;
+        -ms-animation-name: playerInserted;
+        -o-animation-duration: .001s;
+        -o-animation-name: playerInserted;
+        animation-duration: .001s;
+        animation-name: playerInserted;
+    }
+
+    @-webkit-keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @-ms-keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @-o-keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }</style>
+    <style type="text/css">iframe#_hjRemoteVarsFrame {
+        display: none !important;
+        width: 1px !important;
+        height: 1px !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }</style>
+</head>
+
+<body>
+
+<div id="wrapper text-center">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a class="page-scroll" href="{% url 'news'%}">WeNeW</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% block nav %}
+                {% endblock %}
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="row signup--view">
+        <div class="col-lg-6 col-lg-offset-3 text-center">
+            {% block headerText %}
+            {% endblock %}
+
+            <form method="post" class="signup--form">
+                {% csrf_token %}
+                <input type="hidden" name="csrfmiddlewaretoken"
+                       value="y1aCEeBfCZzmkyOsn6BepPSSGILKouxvZyG349vYfh5riToj7KFEe3wrVvk6hvU5">
+                <p><label for="id_username">Username:</label>
+                    <input type="text" name="username" style="text-transform:lowercase" maxlength="254"
+                           autocapitalize="off" autocorrect="off" required="" placeholder="Your username" autofocus=""
+                           id="id_username"></p>
+                <p><label for="id_password">Password:</label>
+                    <input type="password" name="password" autocapitalize="off" autocorrect="off" required=""
+                           placeholder="Min 8 characters" id="id_password"></p>
+                <div class="row terms--row">
+                    {% block action %}
+                    <div class="col-xs-7 text-left">
+                        <div class="terms">
+                            <span>By continuing, I agree to DiviPay.com’s</span><br>
+                            <span><a href="https://secure.divipay.com/terms">Terms and Conditions</a></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-5">
+                        <button class="btn btn-primary" type="submit">Register</button>
+                    </div>
+                    {% endblock %}
+                </div>
+            </form>
+        </div>
+    </div>
+    <br><br><br><br>
+    <script src="/static/UserAction/js/jquery.validate.js"></script>
+
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/static/UserAction/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="/static/UserAction/js/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/static/UserAction/js/sb-admin-2.js"></script>
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 text-center">
+                <p>© 2017 WeNeW by liziming. All Rights Reserved.</p>
+                <p>Contact <a href="####">1564603397@qq.com</a> for support</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

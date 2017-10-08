@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内容订阅</title>
+</head>
+<body>
+<iframe src="{% url 'iframe_contentPage' %}?website_type={{website_type}}&website_url={{website_url}}&content_url={{content_url}}" id="iframeLeft"></iframe>
+<iframe src="{% url 'iframe_previewPage' %}" id="iframeRight"></iframe>
+<script type="text/javascript">
+    function Publisher() {
+        this.observers = [];
+        var flag = false;
+
+        this.addOb = function (observer) {
+            for (var i = 0; !flag && i < this.observers.length; i++) {
+                if (this.observers[i] === observer)
+                    flag = true;
+            }
+            if (!flag) {
+                this.observers.push(observer);
+            }
+            return this;
+        };
+
+        this.updatePreview = function (type, val) {
+            for (var i = 0; i < this.observers.length; i++) {
+                this.observers[i].updateContent(type, val);
+            }
+            return this;
+        };
+    }
+
+
+    var PUB = new Publisher();
+    window.onload = function () {
+        PUB.addOb(document.getElementById("iframeRight").contentWindow.OB);
+    };
+
+
+    changeIframeSize();
+
+
+    function changeIframeSize() {
+        var left_if = document.getElementById("iframeLeft");
+        var right_if = document.getElementById("iframeRight");
+        var width = document.documentElement.clientWidth;
+        var height = document.documentElement.clientHeight;
+        left_if.height = height;
+        right_if.height = height;
+        left_if.width = width / 2 - 30;
+        right_if.width = width / 2 - 30;
+    }
+
+
+    window.onresize = function () {
+        changeIframeSize();
+    };
+
+
+</script>
+</body>
+</html>

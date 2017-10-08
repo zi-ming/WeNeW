@@ -1,0 +1,42 @@
+{% extends 'News_Base.html' %}
+{% load tools %}
+
+{% block meta %}
+<meta name="referrer" content="never">
+{% endblock %}
+
+{% block title %}
+<title>{{record.title}}</title>
+{% endblock %}
+
+{% block main %}
+<div id="primary" class="content-area col-md-12">
+    <main id="main" class="site-main" role="main">
+
+
+        <article class="post type-post status-publish format-standard hentry category-uncategorized tag-sticky-2 tag-template">
+            <header class="entry-header">
+                <h1><a style="color: black" href="{{ record.contenturl|urlDecode }}">{{record.title}}</a></h1>
+                <div class="entry-meta">
+                    <div style="margin-bottom: 5px">
+                        <a href="{% url 'contentSub' %}?website_url={{record.websiteurl}}&content_url={{record.contenturl}}">>>更新本页xpath</a></div>
+                    <span class="posted-on"><i>{{record.author}}</i> - <i>{{record.time}}</i></span>
+                </div><!-- .entry-meta -->
+            </header><!-- .entry-header -->
+
+            <div class="entry-content">
+                {%autoescape off%}
+                {{record.content}}
+                {%endautoescape%}
+            </div><!-- .entry-content -->
+        </article><!-- #post-## -->
+
+        <nav role="navigation" id="nav-below" class="post-navigation">
+            <h1 class="screen-reader-text">Post navigation</h1>
+
+        </nav><!-- #nav-below -->
+
+
+    </main><!-- #main -->
+</div><!-- #primary -->
+{% endblock %}

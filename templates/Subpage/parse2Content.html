@@ -1,0 +1,23 @@
+{% extends 'Subpage_Base.html' %}
+
+{% block form %}
+<form method="get" class="signup--form" action="{% url 'contentSub' %}">{% csrf_token %}
+    <p><label>WebSite Url:</label>
+        <input type="hidden" name="website_type" value="0">
+        <input type="text" name="website_url" style="text-transform:lowercase" maxlength="254"
+               autocapitalize="off" required="required" placeholder="Enter your webSite url" autofocus=""></p>
+    <p><label>Content Url:</label>
+        <input type="text" name="content_url" style="text-transform:lowercase" maxlength="254"
+               autocapitalize="off" required="required" placeholder="Enter your content url" autofocus=""></p>
+    <div class="row terms--row">
+        <div class="col-xs-7 text-left">
+            <div class="terms">
+                <span>{{errors}}</span><br>
+            </div>
+        </div>
+        <div class="navbar-right col-xs-4">
+            <button class="btn btn-primary" style="padding: 10px 60px" type="submit">打开</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
