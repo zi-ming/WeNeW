@@ -12,10 +12,10 @@
 
 <a name="运行环境"></a>
 ## 开发环境
-windows7 or Ubuntu0.16 均可
-Django==1.11.2
-Python==3.6
-Mysql==
+windows7 or Ubuntu0.16 均可<br>
+Django==1.11.2<br>
+Python==3.6<br>
+Mysql==<br>
 
 <a name="背景介绍"></a>
 ## 背景介绍
@@ -38,3 +38,26 @@ Mysql==
 </p>
 
 ![image](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-07_200438.png)
+
+<a name="使用说明"></a>
+## 使用说明
+* 所有操作需要在用户登陆的前提下进行。
+* 如果用户要订阅网站，需要知道网站资讯首页的地址，比如我要订阅“虎嗅”网，虎嗅网的资讯首页地址为：https://www.huxiu.com/
+那么用户登陆WeNeW后，点击左上方的`订阅网站`，出现以下界面：
+![](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-08_113025.png)
+* 输入虎嗅首页地址后，会跳转到虎嗅首页：
+![](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-08_151340.png)
+* 点击资讯内容链接，然后点击左边工具栏的提交，即内容链接的订阅策略设置：
+![](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-08_151420.png)
+* 点击提交后，前端会自动跳转到刚刚的资讯链接，选择内容标题区域，然后点击左边工具栏中的标题，即实现内容标题的策略设置：
+![](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-08_151626.png)
+* 作者和时间的订阅策略设置同上，都是先选择对应的内容区域，然后点击工具栏对应的属性进行确认：
+![](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-08_154121.png)
+* 内容的策略设置与上面的稍有区别，要先点击工具栏的内容按钮，然后选择对应的区域，前端会根据用户选择的区域，自动筛选出其中的内容，显示在右边的页面上，当用户设置好以后，点击`锁定`即可完成内容策略的设置，最终点击`完成`提交到服务器，服务器会根据用户的订阅以及相应的订阅策略进行信息爬取，最新的资讯会及时显示反馈给用户：
+![](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-08_151815.png)
+![](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-08_151843.png)
+![](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-08_151919.png)
+![](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-08_152031.png)
+![](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-08_152110.png)
+![](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-08_153218.png)
+![](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-08_153242.png)
