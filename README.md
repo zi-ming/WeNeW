@@ -48,7 +48,7 @@ Mysql==5.7.19<br>
 <a name="使用说明"></a>
 ## 使用说明
 * <p>所有操作需要在用户登陆的前提下进行。</p>
-* <p>如果用户要订阅网站，需要知道网站资讯首页的地址，比如我要订阅“虎嗅”网，虎嗅网的资讯首页地址为：https://www.huxiu.com/那么用户登陆WeNeW后，点击左上方的`订阅网站`，出现以下界面：</p>
+* <p>如果用户要订阅网站，需要知道网站资讯首页的地址，比如我要订阅“虎嗅”网，虎嗅网的资讯首页地址为：https://www.huxiu.com/ 那么用户登陆WeNeW后，点击左上方的`订阅网站`，出现以下界面：</p>
 ![](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-08_113025.png)<br><br>
 * <p>输入虎嗅首页地址后，点击打开，会跳转到虎嗅首页：</p>
 ![](https://github.com/zi-ming/README_PIC/raw/master/wenew/2017-10-08_151340.png)<br><br>
